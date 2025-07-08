@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prompt Creator Online - AIを使いこなそう</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Hiragino Sans', 'Yu Gothic', sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ヘッダー */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #4a5568;
+        }
+
+        .contact-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        /* メインセクション */
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            margin-bottom: 40px;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.3s forwards;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.6s forwards;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            font-size: 1.1em;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #667eea;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #667eea;
+        }
+
+        /* サービスセクション */
+        .services {
+            background: white;
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 60px;
+            color: #2d3748;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .service-icon {
+            font-size: 3em;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .service-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #2d3748;
+        }
+
+        /* プロフィールセクション */
+        .profile {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 80px 0;
+            color: white;
+        }
+
+        .profile-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .profile-image {
+            text-align: center;
+        }
+
+        .profile-placeholder {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            font-size: 4em;
+            backdrop-filter: blur(10px);
+        }
+
+        .profile-text h2 {
+            font-size: 2.2em;
+            margin-bottom: 20px;
+        }
+
+        .profile-text p {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+
+        /* フッター */
+        footer {
+            background: #2d3748;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 15px;
+            color: #667eea;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #a0aec0;
+            text-decoration: none;
+        }
+
+        .footer-section a:hover {
+            color: #667eea;
+        }
+
+        /* アニメーション */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5em;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .profile-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Prompt Creator</div>
+                <a href="#contact" class="contact-btn">お問い合わせ</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- ヒーローセクション -->
+        <section class="hero">
+            <div class="container">
+                <h1>AIを味方につけて、<br>仕事を効率化しませんか？</h1>
+                <p>WebデザイナーがAI活用の基本から実践まで、わかりやすくサポートします</p>
+                <div class="cta-buttons">
+                    <a href="#services" class="btn-primary">サービスを見る</a>
+                    <a href="#profile" class="btn-secondary">プロフィール</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- サービスセクション -->
+        <section class="services" id="services">
+            <div class="container">
+                <h2 class="section-title">こんなことでお困りではありませんか？</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <span class="service-icon">🤖</span>
+                        <h3>AI初心者サポート</h3>
+                        <p>ChatGPTやClaude、Geminiなど、基本的な使い方から効果的な質問の仕方まで、一からお教えします。</p>
+                    </div>
+                    <div class="service-card">
+                        <span class="service-icon">💡</span>
+                        <h3>業務効率化相談</h3>
+                        <p>あなたの仕事にAIをどう取り入れれば良いか、具体的な活用方法をご提案します。</p>
+                    </div>
+                    <div class="service-card">
+                        <span class="service-icon">📝</span>
+                        <h3>プロンプト作成支援</h3>
+                        <p>思い通りの結果を得るためのプロンプトの書き方を、実例とともにお教えします。</p>
+                    </div>
+                    <div class="service-card">
+                        <span class="service-icon">🎯</span>
+                        <h3>個別コンサルティング</h3>
+                        <p>オンラインまたは対面で、あなたの課題に合わせた個別指導を行います。</p>
+                    </div>
+                    <div class="service-card">
+                        <span class="service-icon">🔧</span>
+                        <h3>ツール導入サポート</h3>
+                        <p>AI画像生成、文章作成ツールなど、目的に応じたツール選びから使い方までサポートします。</p>
+                    </div>
+                    <div class="service-card">
+                        <span class="service-icon">📚</span>
+                        <h3>継続学習サポート</h3>
+                        <p>AI技術の進歩に合わせて、継続的にスキルアップできるようフォローします。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- プロフィールセクション -->
+        <section class="profile" id="profile">
+            <div class="container">
+                <div class="profile-content">
+                    <div class="profile-image">
+                        <div class="profile-placeholder">👤</div>
+                    </div>
+                    <div class="profile-text">
+                        <h2>現役Webデザイナーがお手伝いします</h2>
+                        <p>私自身がWebデザイナーとして働きながら、日々AIツールを活用しています。</p>
+                        <p>デザイン業務、クライアントとのコミュニケーション、制作効率化など、実際の現場でAIをどう使っているかをお伝えできます。</p>
+                        <p>技術的な話ではなく、「明日から使える実践的なAI活用法」を、わかりやすい言葉でお教えします。</p>
+                        <p><strong>一緒に、AIを味方につけて仕事をもっと楽しくしましょう！</strong></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>お問い合わせ</h3>
+                    <p>AI活用についてのご相談は<br>お気軽にどうぞ</p>
+                    <p>初回相談は無料です</p>
+                </div>
+                <div class="footer-section">
+                    <h3>サービス提供方法</h3>
+                    <p>・オンライン（Zoom等）<br>・対面（横浜近郊）<br>・メールサポート</p>
+                </div>
+                <div class="footer-section">
+                    <h3>対応可能な内容</h3>
+                    <p>・AI基礎知識<br>・プロンプト作成<br>・業務効率化提案<br>・ツール選定支援</p>
+                </div>
+            </div>
+            <p>&copy; 2025 Prompt Creator Online. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // スムーススクロール
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // スクロール時のアニメーション
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // サービスカードにアニメーションを追加
+        document.querySelectorAll('.service-card').forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = `all 0.6s ease ${index * 0.1}s`;
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
