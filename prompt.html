@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>生成AIを今すぐ活用しよう</title>
+    <link rel=”icon” href=“img/favicon.ico”>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <style>
         * {
             margin: 0;
@@ -198,6 +200,16 @@
             margin-bottom: 2rem;
         }
 
+      #starCanvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        pointer-events: none;
+        z-index: 9999;
+  }
+
         footer {
             background: rgba(0, 0, 0, 0.3);
             color: white;
@@ -290,7 +302,9 @@
             <a href="#course" class="cta-button">今すぐ始める</a>
         </section>
 
-        <section class="features" id="features">
+         <canvas id="starCanvas"></canvas>
+        
+         <section class="features" id="features">
             <h2 class="section-title">一緒にプロンプトを学びませんか</h2>
             <div class="features-grid">
                 <div class="feature-card">
@@ -361,6 +375,7 @@
             }, 100);
         });
     </script>
-    <script src="js/star.js"></script>
+
+<script src="js/star.js"></script>
 </body>
 </html>
