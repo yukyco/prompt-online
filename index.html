@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prompt Creator Online - AIを使いこなそう</title>
+    <link rel=”icon” href=“img/favicon.ico”>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <style>
         * {
             margin: 0;
@@ -174,7 +176,7 @@
 
         /* プロフィールセクション */
         .profile {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            /*background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); */
             padding: 80px 0;
             color: white;
         }
@@ -188,6 +190,8 @@
 
         .profile-image {
             text-align: center;
+            background-image : (../img/profile_1.png);
+            border-radius: 50%;
         }
 
         .profile-placeholder {
@@ -212,6 +216,16 @@
             font-size: 1.1em;
             margin-bottom: 15px;
         }
+
+        #starCanvas {
+           position: fixed;
+           top: 0;
+           left: 0;
+           width: 100vw;
+           height: 100vh;
+           pointer-events: none;
+           z-index: 9999;
+     }
 
         /* フッター */
         footer {
@@ -281,7 +295,7 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">Prompt Creator</div>
-                <a href="#contact" class="contact-btn">お問い合わせ</a>
+                <a href="../prompt.html" class="contact-btn">お問い合わせ</a>
             </div>
         </div>
     </header>
@@ -291,7 +305,7 @@
         <section class="hero">
             <div class="container">
                 <h1>AIを味方につけて、<br>仕事を効率化しませんか？</h1>
-                <p>WebデザイナーがAI活用の基本から実践まで、わかりやすくサポートします</p>
+                <p>ビジネスルールが変わった今、何よりも優先すべきはAI活用！</p>
                 <div class="cta-buttons">
                     <a href="#services" class="btn-primary">サービスを見る</a>
                     <a href="#profile" class="btn-secondary">プロフィール</a>
@@ -299,6 +313,8 @@
             </div>
         </section>
 
+        <canvas id="starCanvas"></canvas>
+ 
         <!-- サービスセクション -->
         <section class="services" id="services">
             <div class="container">
@@ -343,7 +359,7 @@
             <div class="container">
                 <div class="profile-content">
                     <div class="profile-image">
-                        <div class="profile-placeholder"><img src="profile_1.png" width="150"></div>
+                        <div class="profile-placeholder"><a href="https://good-inspiration.com/"><img src="../img/profile_1.png" width="200px" alt="my image" style="border-radius: 50%"></a></div>
                     </div>
                     <div class="profile-text">
                         <h2>現役Webデザイナーがお手伝いします</h2>
@@ -416,6 +432,7 @@
             observer.observe(card);
         });
     </script>
+
     <script src="js/star.js"></script>
 </body>
 </html>
