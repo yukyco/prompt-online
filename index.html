@@ -218,6 +218,20 @@
             margin-bottom: 15px;
         }
 
+        .marquee {
+          width: 100%;
+          overflow: hidden;
+          white-space: nowrap;
+          box-sizing: border-box;
+          animation: scrollText 10s linear infinite;
+        }
+        
+        @keyframes scrollText {
+          0%   { transform: translateX(100%); }
+          100% { transform: translateX(-100%); }
+        }
+
+
         #starCanvas {
            position: fixed;
            top: 0;
@@ -313,6 +327,8 @@
                 </div>
             </div>
         </section>
+
+        <div class="marquee">お盆休みのお知らせ</div>
 
         <canvas id="starCanvas"></canvas>
  
